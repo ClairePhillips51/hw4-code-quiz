@@ -49,7 +49,7 @@ h1 {
     margin-top: 30px;
 }
  
-#btn0, #btn1, #btn2, #btn3 {
+.buttons button {
     background-color: #6455f1;
     width: 250px;
     font-size: 20px;
@@ -59,12 +59,12 @@ h1 {
     padding: 10px 10px;
 }
  
-#btn0:hover, #btn1:hover, #btn2:hover, #btn3:hover {
+#btnA:hover, #btnB:hover, #btnC:hover, #btnD:hover {
     cursor: pointer;
     background-color: #6455f1;
 }
  
-#btn0:focus, #btn1:focus, #btn2:focus, #btn3:focus {
+#btnA:focus, #btnB:focus, #btnC:focus, #btnD:focus {
     outline: 0;
 }
  

@@ -54,31 +54,73 @@ let questions = [
          choiceC: "x[first]",
          choiceD: "x[0]",
          correct: "D"
-    },
+    }
 ];
 
+let currentQuestionIndex = 0;
 let timer = 90;
+let score = 0;
+let interval = 0;
+
+function endQuiz(){
+    console.log("end quiz");
+    clearInterval(interval);
+    $("#timer").text("Done");
+}
 
 function setTimer(){
     timer--;
     $("#timer").text(timer+"s");
+    if(timer < 1)
+        endQuiz();
 }
 
-function displayQuestion(item, index) {
+function nextQuestion() {
+    currentQuestionIndex++;
+    if(currentQuestionIndex<questions.length)
+        displayQuestion();
+    else
+        endQuiz();
+}
+
+function correctAnswer() {
+    console.log("Correct Answer");
+    score++;
+    nextQuestion();
+}
+
+function wrongAnswer() {
+    console.log("Wrong Answer");
+    timer -= 5;
+    nextQuestion();
+}
+
+function displayQuestion() {
+    item = questions[currentQuestionIndex];
     $("#question-holder").css("display", "block");
     //console.log(item.question);
     $("#questions").text(item.question);
-    $("#btn0").text(item.choiceA);
-    $("#btn1").text(item.choiceB);
-    $("#btn2").text(item.choiceC);
-    $("#btn3").text(item.choiceD);
+    $("#btnA").text(item.choiceA);
+    $("#btnB").text(item.choiceB);
+    $("#btnC").text(item.choiceC);
+    $("#btnD").text(item.choiceD);
 
+    buttons = $(".buttons button");
+    buttons.each(function () {
+        $(this).off("click");
+        if( this.id.includes(item.correct) ){
+            $(this).on("click", correctAnswer);
+        }else{
+            $(this).on("click", wrongAnswer);
+        }
+    });
 }
+
 
 function beginQuiz() {
     console.log("start quiz");
-    setInterval(setTimer,100);
-    questions.forEach(displayQuestion);
+    interval = setInterval(setTimer,1000);
+    displayQuestion();
 }
 
 //Set click event listener for start quiz button
