@@ -57,6 +57,13 @@ let questions = [
     },
 ];
 
+let timer = 90;
+
+function setTimer(){
+    timer--;
+    $("#timer").text(timer+"s");
+}
+
 function displayQuestion(item, index) {
     $("#question-holder").css("display", "block");
     //console.log(item.question);
@@ -70,6 +77,7 @@ function displayQuestion(item, index) {
 
 function beginQuiz() {
     console.log("start quiz");
+    setInterval(setTimer,100);
     questions.forEach(displayQuestion);
 }
 
