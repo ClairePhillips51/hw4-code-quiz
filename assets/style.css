@@ -62,13 +62,12 @@ h1 {
 #btn0:hover, #btn1:hover, #btn2:hover, #btn3:hover {
     cursor: pointer;
     background-color: #6455f1;
-}s
+}
  
 #btn0:focus, #btn1:focus, #btn2:focus, #btn3:focus {
     outline: 0;
 }
  
 #correct {
-    color: #000000;
-    font-size: 18px;
+    font-size: 14px;
 }
