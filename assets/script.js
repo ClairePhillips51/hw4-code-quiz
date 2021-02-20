@@ -1,3 +1,4 @@
+// The Quiz questions and answers
 let questions = [
     {
         question: "At the end of which HTML element does the <script> tag go?",
@@ -57,11 +58,13 @@ let questions = [
     }
 ];
 
+// setting variables for the timer, score, and the progress of the questions
 let currentQuestionIndex = 0;
 let timer = 90;
 let score = 0;
 let interval = 0;
 
+// When the highscore button is clicked the highscores will show up
 function showHighscores() {
     clearInterval(interval);
     $("#timer").text("Timer");
@@ -81,11 +84,13 @@ function showHighscores() {
 
 }
 
+// If you click the go back button while in highscores it will take you back to the start screen
 function goBack() {
     $("#highscore-container").hide();
     $("#start-button").show();
 }
 
+// This stores the intials and associated highscore
 function submitInitials() {
     initials = $("#initials").val();
     console.log("submitting initials: " + initials);
@@ -101,6 +106,7 @@ function submitInitials() {
     $("#start-button").show();
 }
 
+// At the end of the Quiz you are shown the set intials form, the timer stops, and your score is shown
 function endQuiz(){
     console.log("end quiz");
     clearInterval(interval);
@@ -111,6 +117,7 @@ function endQuiz(){
     $("#score").text("Score: " + score);
 }
 
+// This function decrements the timer and ends the quiz if the timer is less than 1
 function setTimer(){
     timer--;
     $("#timer").text(timer+"s");
@@ -118,6 +125,7 @@ function setTimer(){
         endQuiz();
 }
 
+// This increments the question index, then either diplays the next question or ends the quiz
 function nextQuestion() {
     currentQuestionIndex++;
     if(currentQuestionIndex<questions.length)
@@ -126,6 +134,7 @@ function nextQuestion() {
         endQuiz();
 }
 
+//If the right answer is picked increase the score by 1, tell them the right answer was picked, and display next question  
 function correctAnswer() {
     console.log("Correct Answer");
     score++;
@@ -133,6 +142,7 @@ function correctAnswer() {
     nextQuestion();
 }
 
+//If the wrong answer is picked reduce the timer by 5 seconds, tell them the wrong answer was picked, and display next question 
 function wrongAnswer() {
     console.log("Wrong Answer");
     timer -= 5;
@@ -140,6 +150,7 @@ function wrongAnswer() {
     nextQuestion();
 }
 
+// This will display the next question and set event listeners
 function displayQuestion() {
     item = questions[currentQuestionIndex];
     $("#question-holder").css("display", "block");
@@ -161,7 +172,7 @@ function displayQuestion() {
     });
 }
 
-
+// start quiz by resetting question index, timer, and score, hiding the start button, starting the timer, and bringing up the first question
 function beginQuiz() {
     currentQuestionIndex = 0;
     timer = 90;
@@ -172,7 +183,7 @@ function beginQuiz() {
     displayQuestion();
 }
 
-//Set click event listener for start quiz button
+//Set click event listeners
 $("#start-button").on("click", beginQuiz);
 $("#submit").on("click", submitInitials);
 $("#high-score").on("click", showHighscores);
