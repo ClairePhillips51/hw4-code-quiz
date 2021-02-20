@@ -1,29 +1,57 @@
+/* Color scheme for the page*/
+:root {
+    --gray: #dfdbe2;
+    --darkpurple: #240350;
+    --violet: #6455f1;
+    --white:#fff;
+
+}
+
+/* styling for the highscore buttom */
 #high-score{
     float: left;
     font-size: 30px;
-    color:#240350;
+    color: var(--darkpurple);
+    border: none;
+    background-color: var(--gray);
 }
 
 #timer{
     float: right;
     font-size: 30px;
-    color:#000;
+    color: var(--darkpurple);
 }
 
+/* where the timer and highscore button are */
 header{
     margin:1%;
     padding: 2%;
 }
 
 body {
-    background-color: #dfdbe2;
+    background-color: var(--gray)
 }
  
+p{
+    font-size: 16px;
+    line-height: 1.5em;
+}
+
+
+#start-button{
+    font-size: 40px;
+    border-color: var(--violet);
+}
+
+/* Holds the start button and the quiz*/
+#start-button{
 .quiz-container {
     width: 600px;
     height: 500px;
     margin: 0 auto;
-    background-color: #fff;
+    display: block;
+    overflow: auto;
+    background-color: var(--white);
     padding: 10px 50px 50px 50px;
     border: 2px solid #cbcbcb;
     
@@ -31,10 +59,10 @@ body {
  
 h1 {
     font-family: "sans-serif";
-    background-color: #240350;
+    background-color: var(--darkpurple);
     font-size: 60px;
     text-align: center;
-    color: #ffffff;
+    color: var(--white);
     padding: 2px 0px;
     
 }
@@ -44,30 +72,32 @@ h1 {
     font-size: 30px;
     color: #7801ff;
 }
- 
+
+/* Answer buttons*/
 .buttons {
     margin-top: 30px;
 }
  
 .buttons button {
-    background-color: #6455f1;
+    background-color: var(--violet);
     width: 250px;
     font-size: 20px;
-    color: #fff;
-    border: 1px solid #1b145a;
+    color: var(--white);
+    border: 1px solid var(--darkpurple);
     margin: 10px 40px 10px 0px;
     padding: 10px 10px;
 }
  
 #btnA:hover, #btnB:hover, #btnC:hover, #btnD:hover {
     cursor: pointer;
-    background-color: #6455f1;
+    background-color: var(--violet);
 }
  
 #btnA:focus, #btnB:focus, #btnC:focus, #btnD:focus {
     outline: 0;
 }
  
+/* styling for whether the answer was right or wrong */
 #correct {
-    font-size: 14px;
+    font-size: 12px;
 }
