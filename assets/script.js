@@ -63,7 +63,27 @@ let score = 0;
 let interval = 0;
 
 function showHighscores() {
-    
+    clearInterval(interval);
+    $("#timer").text("Timer");
+    $("#start-button").hide();
+    $("#question-holder").hide();
+    $("#highscore-container").show();
+
+    $("#highscore-list p").remove();
+    $("#highscore-list br").remove();
+
+    highscores = JSON.parse(localStorage.getItem("highscores"));
+    console.log(highscores);
+    for (index in highscores){
+        newElement = $('<p>'+highscores[index][0]+': '+highscores[index][1]+'</p><br/>');
+        $("#highscore-list").append(newElement);
+    }
+
+}
+
+function goBack() {
+    $("#highscore-container").hide();
+    $("#start-button").show();
 }
 
 function submitInitials() {
@@ -85,7 +105,7 @@ function endQuiz(){
     console.log("end quiz");
     clearInterval(interval);
     $("#timer").text("Done");
-    $("#question-holder").css("display", "none");
+    $("#question-holder").hide();
     $("#end-screen").show();
 
     $("#score").text("Score: " + score);
@@ -156,3 +176,4 @@ function beginQuiz() {
 $("#start-button").on("click", beginQuiz);
 $("#submit").on("click", submitInitials);
 $("#high-score").on("click", showHighscores);
+$("#goback").on("click", goBack);
