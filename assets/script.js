@@ -62,10 +62,33 @@ let timer = 90;
 let score = 0;
 let interval = 0;
 
+function showHighscores() {
+    
+}
+
+function submitInitials() {
+    initials = $("#initials").val();
+    console.log("submitting initials: " + initials);
+
+    highscores = JSON.parse(localStorage.getItem("highscores"));
+    if(highscores === null)
+        highscores = [[initials, score]];
+    else
+        highscores.push([initials, score]);
+    localStorage.setItem("highscores", JSON.stringify(highscores));
+    $("#initials").val("");
+    $("#end-screen").hide();
+    $("#start-button").show();
+}
+
 function endQuiz(){
     console.log("end quiz");
     clearInterval(interval);
     $("#timer").text("Done");
+    $("#question-holder").css("display", "none");
+    $("#end-screen").show();
+
+    $("#score").text("Score: " + score);
 }
 
 function setTimer(){
@@ -86,12 +109,14 @@ function nextQuestion() {
 function correctAnswer() {
     console.log("Correct Answer");
     score++;
+    $("#correct").show().text("Correct!").fadeOut(1000);
     nextQuestion();
 }
 
 function wrongAnswer() {
     console.log("Wrong Answer");
     timer -= 5;
+    $("#correct").show().text("Wrong you stupid idiot!").fadeOut(1000);
     nextQuestion();
 }
 
@@ -118,6 +143,10 @@ function displayQuestion() {
 
 
 function beginQuiz() {
+    currentQuestionIndex = 0;
+    timer = 90;
+    score = 0;
+    $("#start-button").hide();
     console.log("start quiz");
     interval = setInterval(setTimer,1000);
     displayQuestion();
@@ -125,3 +154,5 @@ function beginQuiz() {
 
 //Set click event listener for start quiz button
 $("#start-button").on("click", beginQuiz);
+$("#submit").on("click", submitInitials);
+$("#high-score").on("click", showHighscores);
