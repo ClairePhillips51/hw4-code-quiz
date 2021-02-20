@@ -33,7 +33,7 @@ The html and css at first seems fairly basic. The html consits of  a header wher
 
 For the css I based my file off of the css from the website in the screen shot below.
 
-![Based css off of this quiz](Pictures/based-ff-of.png)
+![Based css off of this quiz](Pictures/based-off-of.png)
 
 This helped me get started with the javascript which consisted of an array for the questions and then a multitude of functions to get the quiz to flow as decribed above. There are also event-listeneres for every button. 
 
